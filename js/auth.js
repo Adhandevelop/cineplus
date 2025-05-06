@@ -46,7 +46,7 @@ function logout() {
     if (user && user.role === 'admin') {
         window.location.href = '../login admin/login.html';
     } else {
-        window.location.href = '../inicio/inicio.html';
+        window.location.href = '../inicio/index.html';
     }
 }
 
@@ -81,6 +81,6 @@ function redirectByRole(user) {
     if (user.role === 'admin') {
         window.location.href = '../admin/admin.html';
     } else {
-        window.location.href = '../inicio/inicio.html';
+        window.location.href = '../inicio/index.html';
     }
 }
