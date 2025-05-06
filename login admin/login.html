@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Admin Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo">CinePlus Admin</h1>
+    </div>
+    
+    <div class="login-container">
+        <h2>Acceso Administrativo</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" name="email" placeholder="Correo administrador" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Verificando credenciales...</p>
+            </div>
+            <div class="form-footer">
+                <a href="../login-user/login.html" class="back-link">Volver al login de usuario</a>
+            </div>
+            <p class="error" id="errorMessage"></p>
+        </form>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+
+            loading.style.display = 'block';
+            errorMessage.textContent = '';
+
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                const user = login(email, password);
+                
+                if (user && user.role === 'admin') {
+                    redirectByRole(user);
+                } else {
+                    throw new Error('Credenciales inválidas o usuario sin permisos de administrador');
+                }
+            } catch (error) {
+                errorMessage.textContent = error.message;
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+
+        // Verificar si ya hay una sesión activa de admin
+        window.addEventListener('load', () => {
+            const user = checkAuth();
+            if (user && user.role === 'admin') {
+                window.location.href = '../admin/admin.html';
+            }
+        });
+    </script>
+</body>
+</html>

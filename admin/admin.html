@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Panel de Administración</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Verificar que sea un administrador
+        window.addEventListener('load', () => {
+            const user = requireAdmin();
+            if (user) {
+                document.getElementById('adminName').textContent = user.name;
+            }
+        });
+    </script>
+
+    <nav class="admin-nav">
+        <div class="logo">CinePlus Admin</div>
+        <div class="admin-menu">
+            <span id="adminName"></span>
+            <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="sidebar">
+            <h3>Menú de Administración</h3>
+            <ul>
+                <li><a href="admin.html" class="active">Dashboard</a></li>
+                <li><a href="gestion_peliculas.html">Gestión de Películas</a></li>
+                <li><a href="gestion_funciones.html">Gestión de Funciones</a></li>
+                <li><a href="gestion_usuarios.html">Usuarios</a></li>
+                <li><a href="gestion_reportes.html">Reportes</a></li>
+                <li><a href="gestion_configuracion.html">Configuración</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Panel de Control</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Películas Activas</h3>
+                    <p class="stat-number">12</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Funciones Hoy</h3>
+                    <p class="stat-number">24</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ventas del Día</h3>
+                    <p class="stat-number">$1,234</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Usuarios Activos</h3>
+                    <p class="stat-number">156</p>
+                </div>
+            </div>
+
+            <div class="recent-section">
+                <h2>Películas Recientes</h2>
+                <div class="movies-grid">
+                    <div class="movie-card">
+                        <img src="imagenes/kata.jpg" alt="Karate Kid">
+                        <h3>Karate Kid: Legends</h3>
+                        <p>Estreno: 08-Mayo-2025</p>
+                        <button class="edit-btn">Editar</button>
+                    </div>
+                    <div class="movie-card">
+                        <img src="imagenes/thunderss.png" alt="Thunderbolts">
+                        <h3>Thunderbolts</h3>
+                        <p>Estreno: 01-Mayo-2025</p>
+                        <button class="edit-btn">Editar</button>
+                    </div>
+                    <div class="movie-card">
+                        <img src="imagenes/presencia.jpg" alt="Presence">
+                        <h3>Presence</h3>
+                        <p>Estreno: 01-Mayo-2025</p>
+                        <button class="edit-btn">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

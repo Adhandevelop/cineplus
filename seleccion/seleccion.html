@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karate Kid: Legends</title>
+  <link rel="stylesheet" href="seleccion.css">
+  <script src="../js/auth.js"></script>
+</head>
+<nav>
+    <div class="logo">CinePlus</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar películas...">
+    </div>
+    <div class="auth-buttons">
+      <button>Cartelera</button>
+      <button>Pronto</button>
+      <button>Cineco alternativo</button>
+      <button>Comidas</button>
+    </div>
+    <div class="auth-buttons">
+      <button>Iniciar Sesión</button>
+      <button>Registrarse</button>
+    </div>
+  </nav>
+<body>
+  <script>
+    window.addEventListener('load', () => {
+        const user = checkAuth();
+        if (user) {
+            document.getElementById('userName').textContent = user.name;
+        }
+    });
+  </script>
+  <div class="user-menu">
+    <span id="userName"></span>
+    <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+  </div>
+  <div class="container">
+    <div class="poster">
+      <img src="imagenes/kata.jpg"alt="Karate Kid: Legends" />
+    </div>
+    <div class="details">
+      <div class="title">Karate Kid: Legends</div>
+      <div class="info">
+        Título en español: Karate Kid: Leyendas<br>
+        <strong>Recomendada para Mayores de 12 años</strong><br>
+        📍Cine plus villavicencio </br>
+        🕓 4:00 PM, martes 13 de mayo 2025<br>
+        🎬 2D - Doblado
+      </div>
+      <div class="ticket-selection">
+        <h3>SELECCIONAR LOCALIDAD</h3>
+        <div class="ticket-row">
+          <span>General</span>
+          <button class="btn">-</button>
+          <div class="ticket-count">0</div>
+          <button class="btn">+</button>
+        </div>
+        <div class="ticket-row">
+          <span>Preferencial</span>
+          <button class="btn">-</button>
+          <div class="ticket-count">0</div>
+          <button class="btn">+</button>
+        </div>
+      </div>
+      <button class="continue-btn">CONTINUAR</button>
+    </div>
+  </div>
+</body>
+</html>

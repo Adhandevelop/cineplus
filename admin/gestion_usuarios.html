@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Gestión de Usuarios</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <script src="../js/auth.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            requireAdmin();
+            cargarUsuarios();
+        });
+
+        function cargarUsuarios() {
+            // Aquí se implementaría la carga de usuarios desde la base de datos
+            const usuarios = [
+                { id: 1, nombre: 'Usuario Test', email: 'usuario@test.com', rol: 'usuario' },
+                { id: 2, nombre: 'Admin Test', email: 'admin@test.com', rol: 'admin' }
+            ];
+            mostrarUsuarios(usuarios);
+        }
+
+        function mostrarUsuarios(usuarios) {
+            const grid = document.querySelector('.usuarios-grid');
+            grid.innerHTML = usuarios.map(usuario => `
+                <div class="usuario-card">
+                    <h3>${usuario.nombre}</h3>
+                    <p>Email: ${usuario.email}</p>
+                    <p>Rol: ${usuario.rol}</p>
+                    <div class="card-actions">
+                        <button onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function agregarUsuario() {
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rol = document.getElementById('rol').value;
+
+            // Aquí se implementaría la lógica para guardar en la base de datos
+            console.log('Nuevo usuario:', { nombre, email, rol });
+            alert('Usuario agregado con éxito');
+            document.getElementById('nuevoUsuarioForm').style.display = 'none';
+            cargarUsuarios();
+        }
+
+        function editarUsuario(id) {
+            const usuario = obtenerUsuarioPorId(id);
+            if (usuario) {
+                document.getElementById('nombre').value = usuario.nombre;
+                document.getElementById('email').value = usuario.email;
+                document.getElementById('rol').value = usuario.rol;
+                document.getElementById('nuevoUsuarioForm').style.display = 'block';
+            }
+        }
+
+        function eliminarUsuario(id) {
+            if (confirm('¿Está seguro de eliminar este usuario?')) {
+                // Implementar eliminación
+                console.log('Eliminando usuario:', id);
+                cargarUsuarios();
+            }
+        }
+    </script>
+
+    <nav class="admin-nav">
+        <div class="logo">CinePlus Admin</div>
+        <div class="admin-menu">
+            <button onclick="location.href='admin.html'">Dashboard</button>
+            <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="sidebar">
+            <h3>Menú de Administración</h3>
+            <ul>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="gestion_peliculas.html">Gestión de Películas</a></li>
+                <li><a href="gestion_funciones.html">Gestión de Funciones</a></li>
+                <li><a href="gestion_usuarios.html" class="active">Usuarios</a></li>
+                <li><a href="gestion_reportes.html">Reportes</a></li>
+                <li><a href="gestion_configuracion.html">Configuración</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Gestión de Usuarios</h1>
+            
+            <div class="action-bar">
+                <button onclick="document.getElementById('nuevoUsuarioForm').style.display='block'" class="add-btn">
+                    Nuevo Usuario
+                </button>
+            </div>
+
+            <div id="nuevoUsuarioForm" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h2>Agregar Nuevo Usuario</h2>
+                    <form onsubmit="event.preventDefault(); agregarUsuario();">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol">Rol:</label>
+                            <select id="rol" required>
+                                <option value="usuario">Usuario</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit">Guardar</button>
+                            <button type="button" onclick="document.getElementById('nuevoUsuarioForm').style.display='none'">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="usuarios-grid">
+                <!-- Lista de usuarios -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

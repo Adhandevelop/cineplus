@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Minecraft Movie</title>
+  <link rel="stylesheet" href="taquilla.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="../js/auth.js"></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', () => {
+        const user = checkAuth();
+        if (user) {
+            document.getElementById('userName').textContent = user.name;
+        }
+    });
+  </script>
+  
+  <div class="user-menu">
+    <span id="userName"></span>
+    <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+  </div>
+
+  <!-- Header con imagen -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>A Minecraft Movie</h1>
+      <p>Título en español: Una Película de Minecraft</p>
+      <p>Estreno: 03-Abr-2025</p>
+      <button class="play-button">
+        
+      </button>
+    </div>
+  </section>
+  
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <!-- Columna izquierda -->
+    <section class="left">
+      <h2>Sinopsis</h2>
+      <p>Basada en el mundo de Minecraft, donde la creatividad es ilimitada...</p>
+      <br>
+      <h3>Título Original:</h3>
+      <p>A Minecraft Movie</p>
+      <h3>País de Origen:</h3>
+      <p>Estados Unidos</p>
+      <h3>Idioma:</h3>
+      <p>Inglés</p>
+      <h3>Género:</h3>
+      <p>Acción, Aventura, Familiar, Fantasía</p>
+    </section>
+
+    <section class="date-bar">
+      <h4>MAY</h4>
+      <div class="dates">
+        <button class="date active">
+          <span class="day">3</span>
+          <span class="label">SAB</span>
+        </button>
+        <button class="date">
+          <span class="day">4</span>
+          <span class="label">DOM</span>
+        </button>
+        <button class="date">
+          <span class="day">5</span>
+          <span class="label">LUN</span>
+        </button>
+        <button class="date">
+          <span class="day">6</span>
+          <span class="label">MAR</span>
+        </button>
+        <button class="date">
+          <span class="day">7</span>
+          <span class="label">MIE</span>
+        </button>
+        <button class="calendar-icon">
+          📅
+        </button>
+      </div>
+      <br>
+      <div class="multiplex-container">
+        <div class="header">
+          <div>
+            <p class="title">FUNCIONES POR MULTIPLEX</p>
+            <p class="location"><span>❤️</span> Cine plus Villavicencio</p>
+          </div>
+          <button class="filter-button">Filtros <span class="icon">⚙️</span></button>
+        </div>
+      
+        <div class="functions">
+          <p class="format">2D <span class="language">Doblado</span></p>
+          <div class="times">
+            <button class="time">1:20 PM</button>
+            <button class="time">3:50 PM</button>
+            <button class="time">6:10 PM</button>
+            <button class="time">8:30 PM</button>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+  </main>
+  
+</body>
+</html>

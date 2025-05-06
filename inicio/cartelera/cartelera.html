@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CinePlus</title>
+  <link rel="stylesheet" href="cartelera.css">
+  <script src="../../js/auth.js"></script>
+</head>
+<body>
+
+<script>
+  // Verificar autenticación al cargar la página
+  window.addEventListener('load', () => {
+      const user = checkAuth();
+      if (user) {
+          document.getElementById('userName').textContent = user.name;
+          document.getElementById('authButtons').style.display = 'none';
+          document.getElementById('userMenu').style.display = 'block';
+      } else {
+          document.getElementById('authButtons').style.display = 'block';
+          document.getElementById('userMenu').style.display = 'none';
+      }
+  });
+</script>
+
+<nav>
+  <div class="logo">CinePlus</div>
+  <div class="search-bar">
+    <input type="text" placeholder="Buscar películas...">
+  </div>
+  <div class="auth-buttons">
+    <button>Cartelera</button>
+    <button>Pronto</button>
+    <button>Cineco alternativo</button>
+    <button>Comidas</button>
+  </div>
+  <div class="auth-buttons" id="authButtons">
+    <button onclick="window.location.href='../../login-user/login.html'">Iniciar Sesión</button>
+    <button onclick="window.location.href='../../login-user/login.html'">Registrarse</button>
+  </div>
+</nav>
+
+<div class="user-menu" id="userMenu" style="display: none;">
+  <span id="userName"></span>
+  <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+</div>
+
+<section class="movies-section">
+  <h2>🎬 Cartelera</h2>
+  <div class="movies-grid">
+    <div class="movie-card">
+     <img src="../imagenes/kata.jpg" alt="pelicula 1">
+       <h3>Karate Kid : Legends</h3>
+     <div class="subtitulo1">
+        <h6>Titulo en Español : Karate Kid: Legends</h6>
+        <h6>Estreno: 08-Mayo-2025</h6>
+        <h6>Genero: Acción, Drama, Familiar</h6>
+      </div>
+      <div class="subtitulo">Recomendada para Mayores de 12 años</div>
+<div class="boton1">
+    <button >Ver Trailer</button>
+</div>
+    </div>
+    <div class="movie-card">
+      <img src="../imagenes/thunderss.png" alt="Pelicula 2">
+      <h3>  Thunderbolts*</h3>
+      <div class="subtitulo2">
+        <h6>Titulo en Español : Thunderbolts*</h6>
+        <h6>Estreno: 01-Mayo-2025</h6>
+        <h6>Genero: Acción,Aventura, Ciencia Ficcion,Crimen,Fantasia</h6>
+      </div>
+      <div class="subtitulo">Recomendada para Mayores de 12 años</div>
+      <div class="boton1">
+        <button >Ver Trailer</button>
+    </div>
+    </div>
+    <div class="movie-card">
+      <img src="../imagenes/presencia.jpg" alt="Pelicula 3">
+      <h3>Presence</h3>
+      <div class="subtitulo2">
+        <h6>Titulo en Español : Presencia</h6>
+        <h6>Estreno: 01-Mayo-2025</h6>
+        <h6>Genero: Drama,Terror,Thriller</h6>
+      </div>
+      <div class="subtitulo">Clasificacion por confirmar</div>
+      <div class="boton1">
+        <button >Ver Trailer</button>
+    </div>
+    </div>
+    <div class="movie-card">
+      <img src="../imagenes/alarums.jpg" alt="Pelicula 4">
+      <h3>Alarum</h3>
+      <div class="subtitulo2">
+        <h6>Titulo en Español : Alarum : Codigo Letal</h6>
+        <h6>Estreno: 01-Mayo-2025</h6>
+        <h6>Genero: Accion,Crimen,Suspenso</h6>
+      </div>
+      <div class="subtitulo">Clasificacion por confirmar</div>
+      <div class="boton1">
+        <button >Ver Trailer</button>
+    </div>
+    </div>
+    <div class="movie-card">
+        <img src="../imagenes/bailarina.png" alt="Pelicula 4">
+        <h3>Ballerina</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español : Bailarina</h6>
+            <h6>Estreno: 05-Junio-2025</h6>
+            <h6>Genero: Accion</h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/destino.jpg" alt="Pelicula 4">
+        <h3>Final Destination:Bloodlines</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español : Destino Final : Lazos de Sangre</h6>
+            <h6>Estreno: 15-Mayo-2025</h6>
+            <h6>Genero: Horror </h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/diamante.png" alt="Pelicula 4">
+        <h3>Wild Diamond</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español : Diamante Salvaje</h6>
+            <h6>Estreno: 01-Mayo-2025</h6>
+            <h6>Genero: Drama </h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/elio.png" alt="Pelicula 4">
+        <h3>Elio</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español :Elio</h6>
+            <h6>Estreno: 19-Junio-2025</h6>
+            <h6>Genero: Animacion,Aventura,Ciencia,Drama,Familiar,
+                Fantasia. </h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/encerrado.png" alt="Pelicula 4">
+        <h3>Locked</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español : Encerrado</h6>
+            <h6>Estreno: 08-Mayo-2025</h6>
+            <h6>Genero: Thiller </h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/lilo.png" alt="Pelicula 4">
+        <h3>Lilo & Stitch</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español :Lilo & Stitch</h6>
+            <h6>Estreno: 22-Mayo-2025</h6>
+            <h6>Genero: Accion, Aventura,Ciencia Ficcion,Comedia,Drama,
+                Familiar,Fantasia. </h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/tomorrow.png" alt="Pelicula 4">
+        <h3>Hurry Up Tomorrow</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español :Mas Alla De Loa Reflectores</h6>
+            <h6>Estreno: 29-Mayo-2025</h6>
+            <h6>Genero: Suspenso, Thiller </h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="../imagenes/mision.jpg" alt="Pelicula 4">
+        <h3>Mission:Impossible The Final Reckoning</h3>
+        <div class="subtitulo2">
+            <h6>Titulo en Español :Mision Imposible Sentencia Final</h6>
+            <h6>Estreno: 22-Mayo-2025</h6>
+            <h6>Genero: Accion.</h6>
+          </div>
+          <div class="subtitulo">Clasificacion por confirmar</div>
+          <div class="boton1">
+            <button >Ver Trailer</button>
+        </div>
+      </div>
+  </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+      <div class="logo-footer">
+        <img src="../imagenes/Captura de pantalla 2025-04-28 122018.png" alt="Logo CinePlus">
+      </div>
+      <div class="links-footer">
+        <a href="#">Información Legal</a> |
+        <a href="#">Acerca de Cineco</a> |
+        <a href="#">Contáctanos PQR</a> |
+        <a href="#">Preguntas Frecuentes</a>
+      </div>
+      <div class="social-footer">
+        <span>Síguenos en redes sociales</span>
+        <div class="social-icons">
+          <a href="#"><img src="../imagenes/facebook.png" alt="Facebook"></a>
+          <a href="#"><img src="../imagenes/logotipos.png" alt="Twitter (X)"></a>
+          <a href="#"><img src="../imagenes/instagram.png" alt="Instagram"></a>
+        </div>
+      </div>
+    </div>
+    <div class="copy-footer">
+      © 2025 CinePlus
+    </div>
+  </footer>
+  
+</body>
+</html>
+

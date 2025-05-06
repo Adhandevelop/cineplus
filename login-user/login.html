@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo">CinePlus</h1>
+    </div>
+    
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Verificando credenciales...</p>
+            </div>
+            <div class="form-footer">
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                <p class="signup-text">¿No tienes cuenta? <a href="../registro/registro.html" class="signup-link">Regístrate</a></p>
+            </div>
+            <p class="error" id="errorMessage"></p>
+        </form>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+
+            loading.style.display = 'block';
+            errorMessage.textContent = '';
+
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                const user = login(email, password);
+                
+                if (user) {
+                    redirectByRole(user);
+                } else {
+                    throw new Error('Correo o contraseña incorrectos');
+                }
+            } catch (error) {
+                errorMessage.textContent = error.message;
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+
+        // Verificar si ya hay una sesión activa
+        window.addEventListener('load', () => {
+            const user = checkAuth();
+            if (user) {
+                redirectByRole(user);
+            }
+        });
+    </script>
+</body>
+</html>

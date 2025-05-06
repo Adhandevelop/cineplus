@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #000000;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
+}
+
+.logo {
+    color: #FF0000;
+    margin: 0;
+    font-size: 24px;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+h2 {
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #222;
+    color: #FFFFFF;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #FF0000;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #cc0000;
+}
+
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.forgot-password, .signup-link {
+    color: #FF0000;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover, .signup-link:hover {
+    text-decoration: underline;
+}
+
+.signup-text {
+    color: #999;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.error {
+    color: #FF0000;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+::placeholder {
+    color: #666;
+}
+
+.loading {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    border: 3px solid #333;
+    border-top: 3px solid #ff0000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: #666;
+    margin-top: 10px;
+    font-size: 14px;
+}

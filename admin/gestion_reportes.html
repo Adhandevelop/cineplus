@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Reportes</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <script src="../js/auth.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            requireAdmin();
+            cargarEstadisticas();
+        });
+
+        function cargarEstadisticas() {
+            // Simulación de datos de estadísticas
+            const estadisticas = {
+                ventasDiarias: 1234.56,
+                entradasVendidas: 156,
+                peliculaMasVista: "Karate Kid: Legends",
+                ocupacionPromedio: "75%"
+            };
+            mostrarEstadisticas(estadisticas);
+        }
+
+        function mostrarEstadisticas(stats) {
+            document.getElementById('ventasDiarias').textContent = `$${stats.ventasDiarias}`;
+            document.getElementById('entradasVendidas').textContent = stats.entradasVendidas;
+            document.getElementById('peliculaMasVista').textContent = stats.peliculaMasVista;
+            document.getElementById('ocupacionPromedio').textContent = stats.ocupacionPromedio;
+        }
+
+        function generarReporte() {
+            const tipoReporte = document.getElementById('tipoReporte').value;
+            const fechaInicio = document.getElementById('fechaInicio').value;
+            const fechaFin = document.getElementById('fechaFin').value;
+
+            // Aquí se implementaría la generación del reporte
+            console.log('Generando reporte:', { tipoReporte, fechaInicio, fechaFin });
+            alert('Reporte generado con éxito');
+        }
+    </script>
+
+    <nav class="admin-nav">
+        <div class="logo">CinePlus Admin</div>
+        <div class="admin-menu">
+            <button onclick="location.href='admin.html'">Dashboard</button>
+            <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="sidebar">
+            <h3>Menú de Administración</h3>
+            <ul>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="gestion_peliculas.html">Gestión de Películas</a></li>
+                <li><a href="gestion_funciones.html">Gestión de Funciones</a></li>
+                <li><a href="gestion_usuarios.html">Usuarios</a></li>
+                <li><a href="gestion_reportes.html" class="active">Reportes</a></li>
+                <li><a href="gestion_configuracion.html">Configuración</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Reportes y Estadísticas</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Ventas del Día</h3>
+                    <p class="stat-number" id="ventasDiarias">$0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Entradas Vendidas</h3>
+                    <p class="stat-number" id="entradasVendidas">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Película Más Vista</h3>
+                    <p class="stat-text" id="peliculaMasVista">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ocupación Promedio</h3>
+                    <p class="stat-number" id="ocupacionPromedio">0%</p>
+                </div>
+            </div>
+
+            <div class="report-section">
+                <h2>Generar Reportes</h2>
+                <form onsubmit="event.preventDefault(); generarReporte();">
+                    <div class="form-group">
+                        <label for="tipoReporte">Tipo de Reporte:</label>
+                        <select id="tipoReporte" required>
+                            <option value="ventas">Reporte de Ventas</option>
+                            <option value="peliculas">Reporte de Películas</option>
+                            <option value="ocupacion">Reporte de Ocupación</option>
+                            <option value="usuarios">Reporte de Usuarios</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaInicio">Fecha Inicio:</label>
+                        <input type="date" id="fechaInicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaFin">Fecha Fin:</label>
+                        <input type="date" id="fechaFin" required>
+                    </div>
+                    <button type="submit" class="generate-btn">Generar Reporte</button>
+                </form>
+            </div>
+
+            <div class="reports-list">
+                <h2>Reportes Recientes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Periodo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>05/05/2025</td>
+                            <td>Ventas</td>
+                            <td>Abril 2025</td>
+                            <td>
+                                <button>Descargar</button>
+                                <button>Ver</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>04/05/2025</td>
+                            <td>Películas</td>
+                            <td>Abril 2025</td>
+                            <td>
+                                <button>Descargar</button>
+                                <button>Ver</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

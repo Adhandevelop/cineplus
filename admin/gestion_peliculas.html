@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Gestión de Películas</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <script src="../js/auth.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            requireAdmin();
+        });
+
+        function agregarPelicula() {
+            // Obtener datos del formulario
+            const titulo = document.getElementById('titulo').value;
+            const tituloEsp = document.getElementById('tituloEsp').value;
+            const fechaEstreno = document.getElementById('fechaEstreno').value;
+            const genero = document.getElementById('genero').value;
+            const clasificacion = document.getElementById('clasificacion').value;
+            const imagen = document.getElementById('imagen').files[0];
+
+            // Aquí se implementaría la lógica para guardar en la base de datos
+            console.log('Nueva película:', { titulo, tituloEsp, fechaEstreno, genero, clasificacion });
+            alert('Película agregada con éxito');
+        }
+
+        function editarPelicula(id) {
+            // Implementar edición
+            const pelicula = obtenerPeliculaPorId(id);
+            if (pelicula) {
+                document.getElementById('titulo').value = pelicula.titulo;
+                // Rellenar resto de campos
+            }
+        }
+
+        function eliminarPelicula(id) {
+            if (confirm('¿Está seguro de eliminar esta película?')) {
+                // Implementar eliminación
+                console.log('Eliminando película:', id);
+            }
+        }
+    </script>
+
+    <nav class="admin-nav">
+        <div class="logo">CinePlus Admin</div>
+        <div class="admin-menu">
+            <button onclick="location.href='admin.html'">Dashboard</button>
+            <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="sidebar">
+            <h3>Menú de Administración</h3>
+            <ul>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="gestion_peliculas.html" class="active">Gestión de Películas</a></li>
+                <li><a href="gestion_funciones.html">Gestión de Funciones</a></li>
+                <li><a href="gestion_usuarios.html">Usuarios</a></li>
+                <li><a href="gestion_reportes.html">Reportes</a></li>
+                <li><a href="gestion_configuracion.html">Configuración</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Gestión de Películas</h1>
+            
+            <div class="action-bar">
+                <button onclick="document.getElementById('nuevaPeliculaForm').style.display='block'" class="add-btn">
+                    Nueva Película
+                </button>
+            </div>
+
+            <div id="nuevaPeliculaForm" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h2>Agregar Nueva Película</h2>
+                    <form onsubmit="event.preventDefault(); agregarPelicula();">
+                        <div class="form-group">
+                            <label for="titulo">Título Original:</label>
+                            <input type="text" id="titulo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tituloEsp">Título en Español:</label>
+                            <input type="text" id="tituloEsp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaEstreno">Fecha de Estreno:</label>
+                            <input type="date" id="fechaEstreno" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">Género:</label>
+                            <input type="text" id="genero" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clasificacion">Clasificación:</label>
+                            <select id="clasificacion" required>
+                                <option value="TP">Todo Público</option>
+                                <option value="12">+12 años</option>
+                                <option value="15">+15 años</option>
+                                <option value="18">+18 años</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagen">Poster:</label>
+                            <input type="file" id="imagen" accept="image/*" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit">Guardar</button>
+                            <button type="button" onclick="document.getElementById('nuevaPeliculaForm').style.display='none'">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="movies-grid">
+                <!-- Lista de películas -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

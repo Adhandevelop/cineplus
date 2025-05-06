@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlus - Configuración</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <script src="../js/auth.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            requireAdmin();
+            cargarConfiguracion();
+        });
+
+        function cargarConfiguracion() {
+            // Simulación de configuración actual
+            const config = {
+                nombreCine: "CinePlus",
+                direccion: "Calle Principal #123",
+                telefono: "123-456-7890",
+                email: "contacto@cineplus.com",
+                precioBase: "12000",
+                descuentoEstudiante: "20",
+                descuentoAdultoMayor: "30",
+                horaApertura: "10:00",
+                horaCierre: "23:00"
+            };
+            
+            // Cargar valores en el formulario
+            Object.keys(config).forEach(key => {
+                const elemento = document.getElementById(key);
+                if (elemento) elemento.value = config[key];
+            });
+        }
+
+        function guardarConfiguracion() {
+            const config = {
+                nombreCine: document.getElementById('nombreCine').value,
+                direccion: document.getElementById('direccion').value,
+                telefono: document.getElementById('telefono').value,
+                email: document.getElementById('email').value,
+                precioBase: document.getElementById('precioBase').value,
+                descuentoEstudiante: document.getElementById('descuentoEstudiante').value,
+                descuentoAdultoMayor: document.getElementById('descuentoAdultoMayor').value,
+                horaApertura: document.getElementById('horaApertura').value,
+                horaCierre: document.getElementById('horaCierre').value
+            };
+
+            // Aquí se implementaría la lógica para guardar en la base de datos
+            console.log('Guardando configuración:', config);
+            alert('Configuración guardada con éxito');
+        }
+
+        function reiniciarSistema() {
+            if (confirm('¿Está seguro de reiniciar el sistema? Esto puede tomar unos minutos.')) {
+                // Implementar reinicio del sistema
+                console.log('Reiniciando sistema...');
+            }
+        }
+
+        function limpiarCache() {
+            if (confirm('¿Está seguro de limpiar el caché del sistema?')) {
+                // Implementar limpieza de caché
+                console.log('Limpiando caché...');
+                alert('Caché limpiado con éxito');
+            }
+        }
+    </script>
+
+    <nav class="admin-nav">
+        <div class="logo">CinePlus Admin</div>
+        <div class="admin-menu">
+            <button onclick="location.href='admin.html'">Dashboard</button>
+            <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="sidebar">
+            <h3>Menú de Administración</h3>
+            <ul>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="gestion_peliculas.html">Gestión de Películas</a></li>
+                <li><a href="gestion_funciones.html">Gestión de Funciones</a></li>
+                <li><a href="gestion_usuarios.html">Usuarios</a></li>
+                <li><a href="gestion_reportes.html">Reportes</a></li>
+                <li><a href="gestion_configuracion.html" class="active">Configuración</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Configuración del Sistema</h1>
+            
+            <div class="config-section">
+                <h2>Información General</h2>
+                <form onsubmit="event.preventDefault(); guardarConfiguracion();">
+                    <div class="form-group">
+                        <label for="nombreCine">Nombre del Cine:</label>
+                        <input type="text" id="nombreCine" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email de Contacto:</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <h2>Configuración de Precios</h2>
+                    <div class="form-group">
+                        <label for="precioBase">Precio Base:</label>
+                        <input type="number" id="precioBase" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="descuentoEstudiante">Descuento Estudiante (%):</label>
+                        <input type="number" id="descuentoEstudiante" required min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="descuentoAdultoMayor">Descuento Adulto Mayor (%):</label>
+                        <input type="number" id="descuentoAdultoMayor" required min="0" max="100">
+                    </div>
+
+                    <h2>Horarios</h2>
+                    <div class="form-group">
+                        <label for="horaApertura">Hora de Apertura:</label>
+                        <input type="time" id="horaApertura" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horaCierre">Hora de Cierre:</label>
+                        <input type="time" id="horaCierre" required>
+                    </div>
+
+                    <button type="submit" class="save-btn">Guardar Configuración</button>
+                </form>
+            </div>
+
+            <div class="system-actions">
+                <h2>Acciones del Sistema</h2>
+                <div class="action-buttons">
+                    <button onclick="reiniciarSistema()" class="warning-btn">Reiniciar Sistema</button>
+                    <button onclick="limpiarCache()" class="warning-btn">Limpiar Caché</button>
+                    <button onclick="location.href='respaldo.html'" class="action-btn">Crear Respaldo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
